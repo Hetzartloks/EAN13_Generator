@@ -21,11 +21,5 @@ Este proyecto es una aplicación web sencilla que permite generar códigos EAN-1
 - `style.css`: Estilos de la aplicación.
 - `script.js`: Lógica y funcionalidad de la aplicación.
 
-## Publicación en GitHub Pages
-Para publicar la aplicación en GitHub Pages:
-1. Sube los archivos (`index.html`, `style.css`, `script.js`) a tu repositorio.
-2. Ve a la configuración del repositorio y habilita GitHub Pages desde la rama principal.
-3. Accede a la URL proporcionada por GitHub Pages para usar la aplicación.
-
 ## Licencia
 Este proyecto se distribuye bajo la licencia MIT.
