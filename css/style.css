@@ -18,19 +18,20 @@ h1 { text-align: center; }
 .dark-mode .clear-btn { background: #a30018; color: #fff; }
 .dark-mode #error-msg { color: #ff6f6f; }
 .dark-toggle-btn {
-    position: fixed;
-    top: 20px;
-    right: 30px;
-    z-index: 100;
-    background: #444bff;
-    color: #fff;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: background 0.2s;
+	position: fixed;
+	top: 20px;
+	right: 30px;
+	z-index: 100;
+	background: #444bff;
+	color: #fff;
+	border: none;
+	padding: 8px 18px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 15px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+	transition: background 0.2s;
 }
 .dark-mode .dark-toggle-btn { background: #23272a; color: #fff; }
 .dark-toggle-btn:hover { background: #2227aa; }
+/* ...existing code... */
