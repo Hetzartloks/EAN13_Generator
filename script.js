@@ -31,6 +31,13 @@ cantidadInput.addEventListener('input', function() {
     }
 });
 
+// Ejecutar generación al presionar Enter en el input de cantidad
+cantidadInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        document.getElementById('generar').click();
+    }
+});
+
 function generarEAN13() {
     let ean = [Math.floor(Math.random()*9)+1];
     for(let i=0; i<11; i++) ean.push(Math.floor(Math.random()*10));
