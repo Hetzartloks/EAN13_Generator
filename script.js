@@ -16,6 +16,21 @@ darkBtn.onclick = function() {
     }
 };
 
+// Limitar el input de cantidad al máximo permitido
+const cantidadInput = document.getElementById('cantidad');
+const errorDiv = document.getElementById('error-msg');
+
+cantidadInput.addEventListener('input', function() {
+    let valor = parseInt(cantidadInput.value);
+    if (valor > 15) {
+        cantidadInput.value = 15;
+        errorDiv.textContent = 'El máximo permitido es 15.';
+        errorDiv.style.display = 'block';
+    } else {
+        errorDiv.style.display = 'none';
+    }
+});
+
 function generarEAN13() {
     let ean = [Math.floor(Math.random()*9)+1];
     for(let i=0; i<11; i++) ean.push(Math.floor(Math.random()*10));
@@ -53,14 +68,14 @@ function mostrarCodigos(codigos) {
 }
 let codigosGenerados = [];
 document.getElementById('generar').onclick = function() {
-    let cantidad = parseInt(document.getElementById('cantidad').value);
-    const errorDiv = document.getElementById('error-msg');
+    let cantidad = parseInt(cantidadInput.value);
     errorDiv.style.display = 'none';
     if(isNaN(cantidad) || cantidad < 1) return;
     if(cantidad > 15) {
-        errorDiv.textContent = 'Por favor, genera un máximo de 15 códigos a la vez para evitar errores al copiar y pegar.';
+        cantidadInput.value = 15;
+        errorDiv.textContent = 'El máximo permitido es 15.';
         errorDiv.style.display = 'block';
-        return;
+        cantidad = 15;
     }
     codigosGenerados = [];
     for(let i=0; i<cantidad; i++) codigosGenerados.push(generarEAN13());
