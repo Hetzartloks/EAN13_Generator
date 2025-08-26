@@ -21,7 +21,16 @@ const cantidadInput = document.getElementById('cantidad');
 const errorDiv = document.getElementById('error-msg');
 
 cantidadInput.addEventListener('input', function() {
-	let valor = parseInt(cantidadInput.value);
+	// Sanitizar: solo números enteros positivos
+	let valor = cantidadInput.value.replace(/[^0-9]/g, '');
+	cantidadInput.value = valor;
+	valor = parseInt(valor);
+	if (isNaN(valor) || valor < 1) {
+		cantidadInput.value = 1;
+		errorDiv.textContent = 'Solo se permiten números enteros positivos.';
+		errorDiv.style.display = 'block';
+		return;
+	}
 	if (valor > 15) {
 		cantidadInput.value = 15;
 		errorDiv.textContent = 'El máximo permitido es 15.';
@@ -42,13 +51,18 @@ function mostrarCodigos(codigos) {
 	const lista = document.getElementById('ean-list');
 	lista.innerHTML = '';
 	codigos.forEach((codigo, idx) => {
+		// Sanitizar: solo mostrar si es EAN-13 válido (13 dígitos)
+		if (!/^[0-9]{13}$/.test(codigo)) return;
 		const li = document.createElement('li');
 		li.className = 'ean-item';
 		const btn = document.createElement('button');
 		btn.className = 'copy-btn';
 		btn.textContent = 'Copiar';
 		btn.onclick = function() {
-			navigator.clipboard.writeText(codigo);
+			// Sanitizar: solo copiar si es EAN-13 válido
+			if (/^[0-9]{13}$/.test(codigo)) {
+				navigator.clipboard.writeText(codigo);
+			}
 			btn.textContent = 'Copiado!';
 			btn.classList.add('copied');
 			setTimeout(() => {
@@ -56,7 +70,10 @@ function mostrarCodigos(codigos) {
 				btn.classList.remove('copied');
 			}, 1500);
 		};
-		li.innerHTML = `<span>${codigo}</span>`;
+		// Usar textContent para evitar inyección
+		const span = document.createElement('span');
+		span.textContent = codigo;
+		li.appendChild(span);
 		li.appendChild(btn);
 		lista.appendChild(li);
 	});
